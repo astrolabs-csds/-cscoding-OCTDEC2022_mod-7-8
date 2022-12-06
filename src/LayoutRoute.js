@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Header  from './Header';
+import ResponsiveAppBar from './ResponsiveAppBar';
 
 
 function LayoutRoute(props) {
     return (
         <React.Fragment>
-            <Header {...props}/>
+            <ResponsiveAppBar {...props}/>
             <Route path={props.path} exact={props.exact} component={props.component} />
         </React.Fragment>
     )
