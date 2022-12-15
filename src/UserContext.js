@@ -71,8 +71,6 @@ export const UserContextProvider = ({ children }) => {
             localStorage.setItem('avatar', null);
             localStorage.setItem('jsonwebtoken', null);
 
-            localStorage.clear();
-
             dispatch(
                 {
                     type: LOGOUT_USER,
