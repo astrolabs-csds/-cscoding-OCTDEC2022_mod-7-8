@@ -8,6 +8,7 @@ import LoginScreen from './LoginScreen';
 import LayoutRoute from './LayoutRoute';
 import GuestLayoutRoute from './GuestLayoutRoute';
 import PrivateLayoutRoute from './PrivateLayoutRoute';
+import ProfileScreen from './ProfileScreen';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                 <LayoutRoute path="/" exact={true} component={HomeScreen} />
                 <LayoutRoute path="/about" exact={true} component={AboutScreen} />
                 <LayoutRoute path="/contact" exact={true} component={ContactScreen} />
+                <PrivateLayoutRoute path="/profile" exact={true} component={ProfileScreen} />
                 <GuestLayoutRoute path="/register" exact={true} component={RegistrationScreen} />
                 <GuestLayoutRoute path="/login" exact={true} component={LoginScreen} />
             </Switch>
