@@ -13,7 +13,7 @@ const initialState = {
     firstName: localStorage.getItem('firstName') || undefined,
     lastName: localStorage.getItem('lastName') || undefined,
     jsonwebtoken: localStorage.getItem('jsonwebtoken') || undefined,
-    loggedIn: (localStorage.getItem('jsonwebtoken') && localStorage.getItem('jsonwebtoken') !== "undefined") || false,
+    loggedIn: localStorage.getItem('jsonwebtoken') || false,
     email: localStorage.getItem('email') || undefined,
     avatar: localStorage.getItem('avatar') || undefined
 }

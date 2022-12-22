@@ -19,11 +19,12 @@ const pages = ['Home','About','Contact'];
 const pagesPaths = ['/','/about','/contact'];
 
 const settings = ['Profile', 'Account', 'Dashboard'];
+const settingsPath = ['/profile', '/account', '/dashboard'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const { loggedIn, logoutUser } = React.useContext(UserContext)
+  const { loggedIn, avatar, logoutUser } = React.useContext(UserContext)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -147,11 +148,11 @@ function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
+              <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="Remy Sharp" src={avatar} />
+                  </IconButton>
+              </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -170,8 +171,11 @@ function ResponsiveAppBar() {
             >
               {
                 settings.map(
-                  (setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  (setting, i) => (
+                    <MenuItem key={`setting-${i}`} 
+                    component={ReactLink}
+                    to={settingsPath[i]}
+                    onClick={handleCloseUserMenu}>
                       <Typography textAlign="center">{setting}</Typography>
                     </MenuItem>
                   )
@@ -179,17 +183,27 @@ function ResponsiveAppBar() {
               }
 
               {
-                loggedIn ? 
+                loggedIn === true ? 
                   <MenuItem onClick={logoutUser}>
                     <Typography textAlign="center">Logout</Typography>
                   </MenuItem> :
-                  <MenuItem
-                  to={'/register'}
-                  component={ReactLink}
-                  onClick={handleCloseUserMenu}
-                  >
-                    <Typography textAlign="center">Register</Typography>
-                  </MenuItem>
+                  <React.Fragment>
+                    <MenuItem
+                    to={'/register'}
+                    component={ReactLink}
+                    onClick={handleCloseUserMenu}
+                    >
+                      <Typography textAlign="center">Register</Typography>
+                    </MenuItem>
+
+                    <MenuItem
+                    to={'/login'}
+                    component={ReactLink}
+                    onClick={handleCloseUserMenu}
+                    >
+                      <Typography textAlign="center">Login</Typography>
+                    </MenuItem>
+                  </React.Fragment>
               }
             </Menu>
           </Box>
